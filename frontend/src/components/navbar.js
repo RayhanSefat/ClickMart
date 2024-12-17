@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from 'react'
 
-class Navbar extends Component {
-  state = {};
-  render() {
-    return (
+export default function navbar() {
+  return (
+    <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
@@ -38,8 +37,6 @@ class Navbar extends Component {
           </div>
         </div>
       </nav>
-    );
-  }
+    </div>
+  )
 }
-
-export default Navbar;
