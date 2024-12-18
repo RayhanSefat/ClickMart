@@ -12,8 +12,10 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
-const productRoutes = require("./routes/productRoutes");
+const productRoute = require("./routes/productRoute");
+const userRoute = require("./routes/userRoute");
 
-app.use("api/products", productRoutes);
+app.use("/api/products", productRoute);
+app.use("/api/users", userRoute);
 
 module.exports = app;
