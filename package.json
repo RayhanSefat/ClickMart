@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.3.3",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
   }
 }
