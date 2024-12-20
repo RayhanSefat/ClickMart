@@ -1,6 +1,11 @@
-import React from 'react'
+import React from "react";
 
 export default function navbar() {
+  const handleSignOut = () => {
+    localStorage.removeItem("authToken");
+    window.location.href = "/sign-in"; 
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -35,8 +40,17 @@ export default function navbar() {
               </a>
             </div>
           </div>
+          <div>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </button>
+          </div>
         </div>
       </nav>
     </div>
-  )
+  );
 }
