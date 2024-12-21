@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const userModel = require('../models/userModel');
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'click-mart-secret-key';
+const SECRET_KEY = require('../services/secretKey');
 
 const User = {};
 

@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+const SECRET_KEY = require('../services/secretKey');
+
 function authenticateToken(req, res, next) {
     const token = req.header('Authorization')?.split(' ')[1]; 
 
@@ -8,8 +10,11 @@ function authenticateToken(req, res, next) {
     }
 
     try {
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        // console.log('Trying to verify');
+        // console.log(process.env.JWT_SECRET);
+        const verified = jwt.verify(token, SECRET_KEY);
         req.user = verified; 
+        // console.log('Verified!');
         next();
     } catch (err) {
         res.status(403).json({ message: 'Invalid token.' });
