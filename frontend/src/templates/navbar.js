@@ -10,7 +10,7 @@ export default function navbar() {
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             <img
               src="img/ClickMart logo.png"
               alt="Bootstrap"
@@ -37,6 +37,9 @@ export default function navbar() {
               </a>
               <a className="nav-link" href="#">
                 My Cart
+              </a>
+              <a className="nav-link" href="#">
+                My Products
               </a>
             </div>
           </div>

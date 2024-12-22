@@ -7,7 +7,7 @@ const Product = {};
 // Configure multer for file storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const uploadPath = path.join(__dirname, "../../public/images/product-images/");
+    const uploadPath = path.join(__dirname, "../../../frontend/public/images/product-images/"); 
     cb(null, uploadPath); // Ensure the directory exists or handle errors
   },
   filename: function (req, file, cb) {
