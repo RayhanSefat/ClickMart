@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import SignUp from "./pages/signup";
 import SignIn from "./pages/signin";
 import AddProduct from './pages/addProduct';
+import MyProducts from './pages/myProducts';
 
 function App() {
   return (
@@ -17,6 +18,11 @@ function App() {
     <Route path='/add-product' element={
       <ProtectedRoute>
         <AddProduct />
+      </ProtectedRoute>
+    } />
+    <Route path='/my-products' element={
+      <ProtectedRoute>
+        <MyProducts />
       </ProtectedRoute>
     } />
       <Route path='/sign-up' element={<SignUp />} />

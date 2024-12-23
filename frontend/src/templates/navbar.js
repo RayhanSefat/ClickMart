@@ -38,7 +38,7 @@ export default function navbar() {
               <a className="nav-link" href="#">
                 My Cart
               </a>
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/my-products">
                 My Products
               </a>
             </div>

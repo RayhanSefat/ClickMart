@@ -38,6 +38,15 @@ Product.getAllProductsExceptUser = async function (req, res) {
   }
 }
 
+Product.getProductsByUser = async function (req, res) {
+  try {
+    const products = await productModel.find({ sellerUsername: req.params.username });
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
 // Add a new product
 Product.addProduct = async function (req, res) {
   try {

@@ -14,5 +14,6 @@ router.post(
 );
 
 router.get("/get-all-products-except-user/:username", productController.getAllProductsExceptUser);
+router.get("/get-products-by-user/:username", productController.getProductsByUser);
 
 module.exports = router;
