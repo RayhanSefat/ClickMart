@@ -41,10 +41,10 @@ Product.getAllProductsExceptUser = async function (req, res) {
 // Add a new product
 Product.addProduct = async function (req, res) {
   try {
-    const { name, sellerUsername, description, price, category } = req.body;
+    const { name, sellerUsername, description, price, quantity, category } = req.body;
 
     // Validate required fields
-    if (!name || !sellerUsername || !price || !category) {
+    if (!name || !sellerUsername || !price || !quantity || !category) {
       return res.status(400).json({
         message: "Name, sellerUsername, price, and category are required.",
       });
@@ -60,6 +60,7 @@ Product.addProduct = async function (req, res) {
       sellerUsername,
       description,
       price,
+      quantityAvailable: quantity,
       category,
       imagePath,
     });
