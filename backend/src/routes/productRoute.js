@@ -13,4 +13,6 @@ router.post(
   productController.addProduct
 );
 
+router.get("/get-all-products-except-user/:username", productController.getAllProductsExceptUser);
+
 module.exports = router;

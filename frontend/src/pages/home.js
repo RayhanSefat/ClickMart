@@ -2,16 +2,21 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../templates/navbar";
 import axios from "axios";
 import processImagePath from "../services/processImagePath";
+import getCurrentUsername from "../services/getCurrentUsername";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     async function fetchProducts() {
-      const response = await axios.get(
-        "http://localhost:5000/api/products/get-all-products"
-      );
-      setProducts(response.data);
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/products/get-all-products-except-user/${getCurrentUsername()}`
+        );
+        setProducts(response.data);
+      } catch (error) {
+        console.error(error);
+      }
     }
     fetchProducts();
   }, []);

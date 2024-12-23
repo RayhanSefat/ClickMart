@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { jwtDecode } from "jwt-decode";
 import Navbar from '../templates/navbar'
+import getCurrentUsername from '../services/getCurrentUsername';
 
 const AddProduct = () => {
-    const token = localStorage.getItem('authToken');
-    const decodedToken = jwtDecode(token);
-
     const [product, setProduct] = useState({
         name: '',
         description: '',
@@ -36,7 +33,7 @@ const AddProduct = () => {
         try {
             const formData = new FormData();
             formData.append('name', product.name);
-            formData.append('sellerUsername', decodedToken.username);
+            formData.append('sellerUsername', getCurrentUsername());
             formData.append('description', product.description);
             formData.append('price', product.price);
             formData.append('category', product.category);
@@ -46,7 +43,7 @@ const AddProduct = () => {
             const response = await axios.post('http://localhost:5000/api/products/add', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${localStorage.getItem("authToken")}`,
                 },
             });
     

@@ -28,6 +28,16 @@ Product.getAllProducts = async function (req, res) {
   }
 };
 
+Product.getAllProductsExceptUser = async function (req, res) {
+  try {
+    console.log(req.params.username);
+    const products = await productModel.find({ sellerUsername: { $ne: req.params.username } });
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
 // Add a new product
 Product.addProduct = async function (req, res) {
   try {
