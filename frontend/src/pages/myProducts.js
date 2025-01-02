@@ -24,7 +24,7 @@ export default function Home() {
 return (
     <div>
         <Navbar />
-        <h2 className="text-success">My Products</h2>
+        <h2 className="text-primary">My Products</h2>
         <div className="row row-cols-1 row-cols-md-3 g-4">
             {products.length > 0 ? (
                 products.map((product, index) => (
@@ -51,6 +51,9 @@ return (
                                     Category: {product.category || "Uncategorized"}
                                 </small>
                             </p>
+                            <a className="btn btn-primary" href={`/edit-my-product/${product._id}`}>
+                                Edit product
+                            </a>
                         </div>
                     </div>
                 ))

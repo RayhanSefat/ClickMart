@@ -1,6 +1,8 @@
+const mongoose = require('mongoose');
 const multer = require("multer");
 const path = require("path");
 const productModel = require("../models/productModel");
+const { stringify } = require('querystring');
 
 const Product = {};
 
@@ -47,7 +49,12 @@ Product.getProductsByUser = async function (req, res) {
   }
 }
 
-// Add a new product
+Product.getProductById = async function (id) {
+  // console.log(id);
+  return productModel.findById(id);
+}
+
+// Add a new product 
 Product.addProduct = async function (req, res) {
   try {
     const { name, sellerUsername, description, price, quantity, category } = req.body;
@@ -90,5 +97,55 @@ Product.addProduct = async function (req, res) {
     res.status(500).json({ error: err.message });
   }
 };
+
+Product.updateProduct = async function (req, res) {
+  console.log(req.body);
+  try {
+    const { _id, id, name, sellerUsername, description, price, quantityAvailable, category, imagePath } = req.body;
+
+    console.log(_id);
+    console.log(id);
+    console.log(name);
+    console.log(sellerUsername);
+    console.log(description);
+    console.log(price);
+    console.log(quantityAvailable);
+    console.log(category);
+    
+    // Validate required fields
+    if (!name || !price || !quantityAvailable || !category) {
+      return res.status(400).json({
+        message: "Name, price, and category are required.",
+      });
+    }
+    console.log("ok so far");
+
+    // Find the product by ID and update it
+    const updatedProduct = await productModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        id,
+        name,
+        sellerUsername,
+        description,
+        price,
+        quantityAvailable,
+        category,
+        imagePath
+      },
+      { new: true }
+    );
+
+    // Return success response
+    res.status(200).json({
+      message: "Product updated successfully!",
+      product: updatedProduct,
+    });
+
+    console.log("Updated successfully!");
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
 
 module.exports = Product;

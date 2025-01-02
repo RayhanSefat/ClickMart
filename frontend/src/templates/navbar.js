@@ -32,10 +32,7 @@ export default function navbar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <a className="nav-link active" aria-current="page" href="#">
-                Products
-              </a>
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/my-cart">
                 My Cart
               </a>
               <a className="nav-link" href="/my-products">
