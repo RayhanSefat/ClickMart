@@ -38,6 +38,9 @@ export default function navbar() {
               <a className="nav-link" href="/my-products">
                 My Products
               </a>
+              <a className="nav-link" href="/add-product">
+                Add Product
+              </a>
             </div>
           </div>
           <div>
