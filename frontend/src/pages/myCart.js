@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../templates/navbar";
 import getCurrentUsername from "../services/getCurrentUsername";
+import processImagePath from "../services/processImagePath";
 
 export default function MyCart() {
   const [cartItems, setCartItems] = useState([]);
@@ -61,7 +62,7 @@ export default function MyCart() {
             <div className="card mb-3" style={{ maxWidth: "18rem" }} key={index}>
               <h5 className="text-danger">{product.name}</h5>
               <img
-                src={product.imagePath}
+                src={processImagePath(product.imagePath)}
                 className="card-img-top"
                 alt={product.name}
                 style={{ height: "200px", objectFit: "cover" }}

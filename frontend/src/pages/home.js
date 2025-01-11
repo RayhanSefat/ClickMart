@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../templates/navbar";
 import axios from "axios";
 import processImagePath from "../services/processImagePath";
