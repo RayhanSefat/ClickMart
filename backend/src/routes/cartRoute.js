@@ -5,5 +5,6 @@ const authenticationMiddleware = require("../middlewares/authenticationMiddlewar
 const router = express.Router();
 
 router.post("/add-to-cart", cartController.addToCart);
+router.get("/get-cart-by-user/:username", cartController.getCartByUser);
 
 module.exports = router;

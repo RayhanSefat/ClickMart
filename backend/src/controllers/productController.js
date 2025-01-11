@@ -49,7 +49,8 @@ Product.getProductsByUser = async function (req, res) {
 }
 
 Product.getProductById = async function (id) {
-  // console.log(id);
+  console.log(id);
+  console.log("Trying to find product by ID...");
   return productModel.findById(id);
 }
 
