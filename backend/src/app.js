@@ -14,8 +14,10 @@ mongoose
 
 const productRoute = require("./routes/productRoute");
 const userRoute = require("./routes/userRoute");
+const cartRoute = require("./routes/cartRoute");
 
 app.use("/api/products", productRoute);
 app.use("/api/users", userRoute);
+app.use("/api/cart", cartRoute);
 
 module.exports = app;

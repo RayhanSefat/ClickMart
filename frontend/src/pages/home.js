@@ -21,6 +21,22 @@ export default function Home() {
     fetchProducts();
   }, []);
 
+  function addToCart(product) {
+    axios
+      .post("http://localhost:5000/api/cart/add-to-cart", {
+        username: getCurrentUsername(),
+        productID: product._id,
+        quantity: 1,
+      })
+      .then(() => {
+        alert(`${product.name} added to cart successfully!`);
+      })
+      .catch((error) => {
+        console.error("Error adding to cart:", error);
+        alert("Failed to add product to cart.");
+      });
+  }
+
   return (
     <div>
       <Navbar />
@@ -47,6 +63,7 @@ export default function Home() {
                     Category: {product.category || "Uncategorized"}
                   </small>
                 </p>
+                <button className="btn btn-primary" onClick={ () => addToCart(product) }>Add to cart</button>
               </div>
             </div>
           ))

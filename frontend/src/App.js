@@ -6,6 +6,7 @@ import SignUp from "./pages/signup";
 import SignIn from "./pages/signin";
 import AddProduct from './pages/addProduct';
 import MyProducts from './pages/myProducts';
+import MyCart from './pages/myCart';
 import EditMyProduct from './pages/editMyProduct';  
 
 function App() {
@@ -24,6 +25,11 @@ function App() {
     <Route path='/my-products' element={
       <ProtectedRoute>
         <MyProducts />
+      </ProtectedRoute>
+    } />
+    <Route path='/my-cart' element={
+      <ProtectedRoute>
+        <MyCart />
       </ProtectedRoute>
     } />
     <Route path='/edit-my-product/:id' element={
