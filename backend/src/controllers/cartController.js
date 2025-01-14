@@ -1,4 +1,5 @@
 const cartModel = require("../models/cartModel");
+const productModel = require("../models/productModel");
 
 const Cart = {};
 
@@ -81,5 +82,45 @@ Cart.getCartByUser = async function getCartByUser(req, res) {
     res.status(500).json({ error: err.message });
   }
 };
+
+Cart.updateCart = async function updateCart(req, res) {
+  const { username, productID, quantity } = req.body;
+
+  try {
+    if (!username || !productID || !quantity) {
+      return res.status(400).json({ message: "All fields are required." });
+    }
+
+    const existingCart = await cartModel.findOne({ username });
+    if (!existingCart) {
+      return res.status(404).json({ message: "Cart not found." });
+    }
+
+    const productIndex = existingCart.productID.findIndex((id) => id === productID);
+    if (productIndex === -1) {
+      return res.status(404).json({ message: "Product not found in cart." });
+    }
+
+    if (quantity < 0) {
+      return res.status(400).json({ message: "Quantity cannot be less than 0." });
+    }
+
+    const product = await productModel.findById(productID);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found." });
+    }
+
+    if (quantity > product.stock) {
+      return res.status(400).json({ message: "Quantity exceeds stock available." });
+    }
+
+    existingCart.quantity[productIndex] = quantity;
+    await existingCart.save();
+
+    res.status(200).json({ message: "Cart updated successfully!", cart: existingCart });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
 
 module.exports = Cart;
