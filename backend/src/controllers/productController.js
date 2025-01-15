@@ -48,10 +48,15 @@ Product.getProductsByUser = async function (req, res) {
   }
 }
 
-Product.getProductById = async function (id) {
-  console.log(id);
-  console.log("Trying to find product by ID...");
-  return productModel.findById(id);
+Product.getProductById = async function (req, res) {
+  try {
+    console.log("API hitted successfully", req.params);
+    const product = await productModel.findById(req.params.id);
+    res.json(product);
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: err.message });
+  }
 }
 
 // Add a new product 
