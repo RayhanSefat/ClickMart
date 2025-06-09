@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -38,6 +40,10 @@ const Signup = () => {
             });
 
             setMessage(response.data.message);
+
+            alert('Signup successful! You can now sign in.');
+            navigate('/sign-in');
+
         } catch (error) {
             setMessage(error.response?.data?.message || 'An error occurred. Please try again.');
         }
