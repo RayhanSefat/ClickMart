@@ -90,6 +90,15 @@ export default function MyCart() {
     upadateCartProductQuantity(product, updatedQuantity);
   }
 
+  const proceedToCheckout = () => {
+    if (cartItems.length === 0) {
+      setError("Your cart is empty. Please add items to your cart before proceeding.");
+      return;
+    }
+
+    window.location.href = "/billing";
+  };
+
   return (
     <div>
       <Navbar />
@@ -147,6 +156,12 @@ export default function MyCart() {
           ) : (
             <p>No items in cart.</p>
           )}
+        </div>
+
+        <div>
+          <button className="btn btn-primary mt-3" onClick={proceedToCheckout}>
+            Proceed to Checkout
+          </button>
         </div>
       </div>
     </div>
