@@ -121,6 +121,44 @@ Cart.updateCart = async function updateCart(req, res) {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-}
+};
+
+Cart.getBillingDetails = async function getBillingDetails(req, res) {
+  const { username } = req.params;
+
+  try {
+    const cart = await cartModel.findOne({ username });
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found." });
+    }
+
+    const items = await Promise.all(
+      cart.productID.map(async (productId, i) => {
+        const product = await productModel.findById(productId);
+        if (!product) return null;
+        const qty = cart.quantity[i];
+        return {
+          name: product.name,
+          price: product.price,
+          quantity: qty,
+          subtotal: product.price * qty
+        };
+      })
+    );
+    
+    const filteredItems = items.filter(Boolean);
+    console.log(filteredItems);
+    const total = filteredItems.reduce((sum, item) => sum + item.subtotal, 0);
+
+    res.status(200).json({
+      billingItems: filteredItems,
+      totalAmount: total
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+};
 
 module.exports = Cart;
